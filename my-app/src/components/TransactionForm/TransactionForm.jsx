@@ -4,7 +4,7 @@ const TransactionForm = () => {
       <form action="">
         <label>
           <p>Date</p>
-          <input type="data" />
+          <input type="date" />
         </label>
         <label>
           <p>Time</p>

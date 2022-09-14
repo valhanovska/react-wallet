@@ -4,13 +4,13 @@ import MainButtons from "../MainButtons/MainButtons";
 import Categories from "../Categories";
 import { categoriesList } from "../../data/categoriesList";
 
-const MainPage = () => {
+const MainPage = ({ changePageHandler }) => {
   return (
     <>
       <Header title="Журнал витрат" />
       <main>
         <TransactionForm />
-        <MainButtons />
+        <MainButtons changePageHandler={changePageHandler} />
         <Categories categoriesList={categoriesList} />
       </main>
     </>

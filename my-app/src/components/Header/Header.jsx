@@ -8,11 +8,10 @@ const Header = ({ title, btnContent }) => {
     </header>
   );
 };
+
 Header.propTypes = {
   title: PropTypes.string.isRequired,
   btnContent: PropTypes.string.isRequired,
 };
 
 export default Header;
-
-// sfc

@@ -1,23 +1,27 @@
 import PropTypes from "prop-types";
-import Header from "../Header/Header";
 
-const Categories = ({ categoriesList }) => {
+const Categories = ({ categoriesList, setCategory }) => {
   return (
     <>
-      <Header title="Category" />
       <ul>
-        {categoriesList.map(({ id, category }) => {
-          return (
-            <li key={id}>
-              <button>{category}</button>
+        {categoriesList.map(({ id, category }) => (
+          <li key={id}>
+            <div>
+              <button
+                onClick={() => {
+                  setCategory(category);
+                }}
+              >
+                {category}
+              </button>
               <button>...</button>
-            </li>
-          );
-        })}
+            </div>
+          </li>
+        ))}
       </ul>
-      <form action="">
-        <input type="text" placeholder="New category" />
-        <button type="submit">+</button>
+      <form>
+        <input type="text" placeholder="New category"></input>
+        <button type="button">+</button>
       </form>
     </>
   );
@@ -29,7 +33,6 @@ Categories.propTypes = {
       id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
       category: PropTypes.string.isRequired,
     })
-  ).isRequired,
+  ),
 };
-
 export default Categories;

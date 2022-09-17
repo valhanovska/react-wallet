@@ -1,32 +1,86 @@
-const TransactionForm = () => {
+import {
+  Form,
+  Label,
+  InputTitle,
+  Input,
+  Submit,
+} from "./TransactionForm.Styled";
+import sprite from "../../assets/icons/sprite.svg";
+
+const TransactionForm = ({
+  cbHandleSubmit,
+  dataForm,
+  handleChange,
+  openCategoriesHandler,
+}) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    cbHandleSubmit(dataForm);
+  };
+  const { date, time, category, summary, currency, comments } = dataForm;
+
   return (
-    <>
-      <form action="">
-        <label>
-          <p>Date</p>
-          <input type="date" />
-        </label>
-        <label>
-          <p>Time</p>
-          <input type="time" />
-        </label>
-        <label>
-          <p>Category</p>
-          <input type="button" value={"food"} />
-        </label>
-        <label>
-          <p>Sum</p>
-          <input type="button" placeholder="input sum" />
-        </label>
-        <label>
-          <p>Currency</p>
-          <input type="button" value={"UAH"} />
-        </label>
-        <label>
-          <input type="text" placeholder="Comment" />
-        </label>
-      </form>
-    </>
+    <Form onSubmit={handleSubmit}>
+      <Label>
+        <InputTitle>Date</InputTitle>
+        <Input
+          type="date"
+          name="date"
+          value={date}
+          min="2000-01-01"
+          max="2100-12-31"
+          onChange={handleChange}
+        />
+      </Label>
+      <Label>
+        <InputTitle>Time</InputTitle>
+        <Input type="time" name="time" value={time} onChange={handleChange} />
+      </Label>
+      <Label htmlFor="category">
+        <InputTitle>Category</InputTitle>
+        <Input
+          type="button"
+          value={category}
+          name="category"
+          onClick={openCategoriesHandler}
+          onChange={handleChange}
+        ></Input>
+      </Label>
+      <Label>
+        <InputTitle>Summary</InputTitle>
+        <Input
+          type="text"
+          value={summary}
+          name="summary"
+          placeholder="Summary"
+          onChange={handleChange}
+        ></Input>
+      </Label>
+      <Label>
+        <InputTitle>Currency</InputTitle>
+        <Input
+          type="button"
+          name="currency"
+          value={currency}
+          onChange={handleChange}
+        ></Input>
+      </Label>
+      <Label>
+        <InputTitle>Comments</InputTitle>
+        <Input
+          type="text"
+          value={comments}
+          name="comments"
+          placeholder="Comments"
+          onChange={handleChange}
+        ></Input>
+      </Label>
+      <Submit type="submit">
+        <svg>
+          <use href={sprite + "#icon-checkmark"}></use>
+        </svg>
+      </Submit>
+    </Form>
   );
 };
 

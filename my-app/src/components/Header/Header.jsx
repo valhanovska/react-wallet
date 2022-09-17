@@ -1,11 +1,23 @@
+import { HeaderStyled, Button } from "./Header.Styled";
+import sprite from "../../assets/icons/sprite.svg";
 import PropTypes from "prop-types";
 
-const Header = ({ title, btnContent }) => {
+const Header = ({ title, btnContent, changePageHandler }) => {
   return (
-    <header>
-      {btnContent && <button>{btnContent}</button>}
+    <HeaderStyled>
+      {changePageHandler ? (
+        <Button
+          onClick={() => {
+            changePageHandler("main");
+          }}
+        >
+          <svg>
+            <use href={sprite + "#icon-arrow-left2"}></use>
+          </svg>
+        </Button>
+      ) : null}
       <h1>{title}</h1>
-    </header>
+    </HeaderStyled>
   );
 };
 

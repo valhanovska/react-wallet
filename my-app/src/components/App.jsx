@@ -6,20 +6,43 @@ import TransactionHistoryPage from "./TransactionHistoryPage/TransactionHistoryP
 class App extends Component {
   state = {
     activePage: "main",
-    transactions: [],
+    deduction: [],
+    income: [],
   };
+
+  componentDidMount() {
+    const income = JSON.parse(localStorage.getItem("income"));
+    const deduction = JSON.parse(localStorage.getItem("deduction"));
+
+    this.setState({
+      deduction,
+      income,
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.deduction !== this.state.deduction) {
+      localStorage.setItem("deduction", JSON.stringify(this.state.deduction));
+    }
+
+    if (prevState.income !== this.state.income) {
+      localStorage.setItem("income", JSON.stringify(this.state.income));
+    }
+  }
 
   changePageHandler = (page = "main") => {
     this.setState({ activePage: page });
   };
 
   addTransaction = (transaction) => {
+    const { transactionType } = transaction;
     this.setState((prev) => {
-      return { transactions: [...prev.transactions, transaction] };
+      return { [transactionType]: [...prev[transactionType], transaction] };
     });
   };
 
   render() {
+    const { deduction, income, activePage } = this.state;
     return (
       <Container>
         {this.state.activePage === "main" ? (
@@ -29,9 +52,9 @@ class App extends Component {
           />
         ) : (
           <TransactionHistoryPage
-            transactionType={this.state.activePage}
+            transactionType={activePage}
             changePageHandler={this.changePageHandler}
-            transactions={this.state.transactions}
+            transactions={activePage === "deduction" ? deduction : income}
           />
         )}
       </Container>

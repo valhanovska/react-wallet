@@ -14,6 +14,7 @@ class MainPage extends Component {
     summary: "",
     currency: "UAH",
     comments: "",
+    transactionType: "deduction",
   };
 
   handleChange = (e) => {
@@ -54,7 +55,7 @@ class MainPage extends Component {
           <>
             <Header
               title="Categories"
-              btnContent="Back"
+              // btnContent="Back"
               changePageHandler={this.closeCategoriesHandler}
             />
             <main>

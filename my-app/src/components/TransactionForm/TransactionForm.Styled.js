@@ -40,6 +40,10 @@ export const Submit = styled.button`
   padding: 0;
   margin-right: 16px;
 
+  :active {
+    transform: scale(0.95);
+  }
+
   & svg {
     width: 30px;
     height: 30px;

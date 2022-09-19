@@ -17,10 +17,31 @@ const TransactionForm = ({
     e.preventDefault();
     cbHandleSubmit(dataForm);
   };
-  const { date, time, category, summary, currency, comments } = dataForm;
+  const { date, time, category, summary, currency, comments, transactionType } =
+    dataForm;
 
   return (
     <Form onSubmit={handleSubmit}>
+      <label htmlFor="">
+        <span>Income</span>
+        <input
+          type="radio"
+          name="transactionType"
+          value="income"
+          onChange={handleChange}
+          checked={transactionType === "income"}
+        />
+      </label>
+      <label htmlFor="">
+        <span>Deduction</span>
+        <input
+          type="radio"
+          name="transactionType"
+          value="deduction"
+          onChange={handleChange}
+          checked={transactionType === "deduction"}
+        />
+      </label>
       <Label>
         <InputTitle>Date</InputTitle>
         <Input
